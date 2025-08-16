@@ -13,9 +13,10 @@ from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
-from catboost import CatBoostRegressor
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.ensemble import AdaBoostRegressor
+
+
+
+
 
 
 from src.exception import CustomException
@@ -48,7 +49,7 @@ class ModelTrainer:
                 "Random Forest": RandomForestRegressor(),
                 "Gradient Boosting": GradientBoostingRegressor(),
                 "XGBRegressor": XGBRegressor(),
-                "CatBoosting Regressor": CatBoostRegressor(verbose=False),
+                "CatBoost Regressor": CatBoostRegressor(verbose=False),
                 "AdaBoost Regressor": AdaBoostRegressor(),
             }
             params = {
@@ -68,7 +69,7 @@ class ModelTrainer:
         'learning_rate': [0.1, 0.01, 0.05, 0.001],
         'n_estimators': [8, 16, 32, 64, 128, 256]
     },
-    "CatBoosting Regressor": {
+    "CatBoost Regressor": {
         'depth': [6, 8, 10],
         'learning_rate': [0.01, 0.05, 0.1],
         'iterations': [30, 50, 100]
@@ -97,7 +98,7 @@ class ModelTrainer:
             save_object(self.model_trainer_config.trained_model_file_path, best_model)
             logging.info(f"Best model: {best_model_name} with score: {best_model_score}")
 
-            save_object(file_path=self.model_trainer_config.trained_model_file_path, obj=best_model )
+      
 
             return best_model_name, best_model_score
 
