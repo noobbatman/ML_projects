@@ -59,3 +59,22 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, param):
 
     except Exception as e:
         raise CustomException(e, sys)
+    
+def load_object(file_path):
+    try:
+        # Log the file path to debug
+        logging.info(f"Attempting to load object from: {file_path}")
+        
+        # Check if file exists before attempting to load
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"File not found at path: {file_path}")
+
+        with open(file_path, "rb") as file_obj:
+            return pickle.load(file_obj)
+
+    except FileNotFoundError as fnf_error:
+        logging.error(f"Error: {fnf_error}")
+        raise CustomException(fnf_error, sys)
+    except Exception as e:
+        logging.error(f"Error: {e}")
+        raise CustomException(e, sys)
